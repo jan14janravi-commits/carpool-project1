@@ -1,0 +1,18 @@
+{% extends "carpool/base.html" %}
+{% block content %}
+<h2>Offer a Ride</h2>
+<form method="post" novalidate>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-primary" type="submit">Create Ride</button>
+</form>
+{% endblock %}
+
+<script>
+async function getSuggestions() {
+  const res = await fetch(`/ai/suggest/?location=bangalore`);
+  const data = await res.json();
+  console.log(data.suggestions);
+}
+window.onload = getSuggestions;
+</script>

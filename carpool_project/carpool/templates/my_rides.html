@@ -1,0 +1,13 @@
+{% extends "carpool/base.html" %}
+{% block content %}
+<h2>My Rides Offered</h2>
+{% if rides %}
+  <ul>
+    {% for ride in rides %}
+      <li><a href="{{ ride.get_absolute_url }}">{{ ride.title }}</a> — {{ ride.origin }} → {{ ride.destination }} — seats left: {{ ride.seats_available }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>You haven't offered any rides yet. <a href="{% url 'ride_create' %}">Offer one now</a>.</p>
+{% endif %}
+{% endblock %}

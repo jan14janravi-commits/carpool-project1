@@ -1,0 +1,100 @@
+/* --- Additional Form Styling for the HTML Provided --- */
+
+.form-container {
+    /* Existing style from original CSS is perfect: 
+       background: var(--card-bg); 
+       backdrop-filter: blur(15px); 
+       ... 
+    */
+    width: 90%; /* Added width for better centering on screen */
+    max-width: 500px;
+    margin: 40px auto; /* Center the form container on the page */
+}
+
+.form-container h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 1.25rem; /* Space between fields */
+    position: relative;
+}
+
+.form-group label {
+    display: block; /* Make label take up full width */
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+/* Targeting the form fields rendered by Django/Jinja */
+.form-group input,
+.form-group textarea,
+.form-group select {
+    /* Apply the existing .form-control styles to all inputs/fields */
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #e1e1e1;
+    padding: 0.8rem;
+    transition: all 0.3s ease;
+    /* Ensuring the fields inherit the body text style */
+    color: var(--text-color); 
+    background-color: white; 
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+    outline: none;
+}
+
+/* Styling the submit button */
+.form-container button[type="submit"] {
+    /* Inherit the beautiful primary button look */
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: var(--light-text);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%; /* Make button full width */
+    margin-top: 1rem;
+}
+
+.form-container button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+}
+
+.form-note {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* --- Added a style for a clean body background since your HTML is only the form --- */
+body {
+    background-color: var(--background-color);
+    /* Set a minimum height to allow centering for a form-only page */
+    min-height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+@media (max-width: 550px) {
+    .form-container {
+        padding: 1.5rem;
+    }
+}

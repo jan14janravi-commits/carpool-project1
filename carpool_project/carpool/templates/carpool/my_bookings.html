@@ -1,0 +1,17 @@
+{% extends "carpool/base.html" %}
+{% block content %}
+<h2>My Bookings</h2>
+{% if bookings %}
+  <ul class="list-group">
+    {% for b in bookings %}
+      <li class="list-group-item">
+        <a href="{{ b.ride.get_absolute_url }}">{{ b.ride.title }}</a>
+        <div>Seats: {{ b.seats_booked }}</div>
+        <div>Ride: {{ b.ride.origin }} → {{ b.ride.destination }} on {{ b.ride.date }}</div>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>You have no bookings.</p>
+{% endif %}
+{% endblock %}

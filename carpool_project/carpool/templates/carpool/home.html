@@ -1,0 +1,123 @@
+{% extends "carpool/base.html" %}
+{% load static %}
+
+{% block title %}Home - CarPool{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content animate-fade-in">
+        <h1>Share Your Journey</h1>
+        <p>Join our community of carpoolers and make travel more sustainable, affordable, and social.</p>
+        {% if not user.is_authenticated %}
+            <div class="d-flex justify-content-center gap-3">
+                <a href="{% url 'register' %}" class="btn btn-primary btn-lg">Get Started</a>
+                <a href="{% url 'login' %}" class="btn btn-outline-light btn-lg">Sign In</a>
+            </div>
+        {% else %}
+            <a href="{% url 'ride_create' %}" class="btn btn-primary btn-lg">Offer a Ride</a>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="container animate-fade-in">
+    <h2 class="text-center mb-5">Why Choose CarPool?</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="feature-card">
+                <i class="fas fa-wallet"></i>
+                <h3>Save Money</h3>
+                <p>Split fuel costs and reduce your travel expenses while helping others save too.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-card">
+                <i class="fas fa-leaf"></i>
+                <h3>Go Green</h3>
+                <p>Reduce your carbon footprint by sharing rides and contributing to a cleaner environment.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-card">
+                <i class="fas fa-users"></i>
+                <h3>Meet People</h3>
+                <p>Connect with like-minded travelers and make your journey more enjoyable.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Available Rides Section -->
+<section class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Available Rides</h2>
+        <form class="d-flex" method="get">
+            <div class="input-group">
+                <input class="form-control" name="q" placeholder="Search origin/destination" value="{{ q }}">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+        </form>
+    </div>
+
+    {% if rides %}
+        <div class="row">
+            {% for ride in rides %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="ride-card">
+                        <h3>{{ ride.title }}</h3>
+                        <div class="mb-3">
+                            <i class="fas fa-map-marker-alt text-primary"></i>
+                            <span>{{ ride.origin }} → {{ ride.destination }}</span>
+                        </div>
+                        <div class="mb-3">
+                            <i class="fas fa-calendar text-primary"></i>
+                            <span>{{ ride.date }}</span>
+                            <i class="fas fa-clock text-primary ms-3"></i>
+                            <span>{{ ride.time|time:"H:i" }}</span>
+                        </div>
+                        <a href="{{ ride.get_absolute_url }}" class="btn btn-primary w-100">View Details</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center py-5">
+            <i class="fas fa-car-side fa-3x text-muted mb-3"></i>
+            <h3>No rides available</h3>
+            <p>Be the first to offer a ride!</p>
+            <a href="{% url 'ride_create' %}" class="btn btn-primary">Offer a Ride</a>
+        </div>
+    {% endif %}
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>About CarPool</h5>
+                <p>Making travel more sustainable, affordable, and social through carpooling.</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="footer-links">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'ride_create' %}">Offer a Ride</a></li>
+                    <li><a href="{% url 'my_rides' %}">My Rides</a></li>
+                    <li><a href="{% url 'my_bookings' %}">My Bookings</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Contact Us</h5>
+                <ul class="footer-links">
+                    <li><i class="fas fa-envelope"></i> support@carpool.com</li>
+                    <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}

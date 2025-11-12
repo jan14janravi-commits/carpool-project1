@@ -1,0 +1,337 @@
+/* Modern UI/UX CSS for CarPool Application */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary: #009688;
+    --secondary: #00695c;
+    --accent: #00bfa5;
+    --text-dark: #1e1e1e;
+    --text-light: #ffffff;
+    --bg-light: #f4f9f9;
+    --card-bg: rgba(255,255,255,0.85);
+    --border-radius: 16px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.1);
+    --transition: all 0.3s ease-in-out;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: var(--bg-light);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Hero Section with Car Sharing Theme */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 150, 136, 0.7)),
+                url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1920');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    margin-top: -72px; /* Offset for navbar */
+}
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: var(--text-light);
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    color: var(--text-light);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.hero-content .btn {
+    width: auto;
+    margin: 0 0.5rem;
+}
+
+/* Container and Card Styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.form-container {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 30px;
+    width: 420px;
+    margin: 2rem auto;
+    transition: var(--transition);
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    transition: var(--transition);
+}
+
+.form-container:hover,
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Typography */
+h1, h2, h3 {
+    color: var(--secondary);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Forms */
+form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    color: var(--secondary);
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: var(--transition);
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 150, 136, 0.1);
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 24px;
+    border: none;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    color: var(--text-light);
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, var(--accent), var(--primary));
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 150, 136, 0.4);
+}
+
+.btn-outline-light {
+    background: transparent;
+    border: 2px solid var(--text-light);
+}
+
+.btn-outline-light:hover {
+    background: var(--text-light);
+    color: var(--primary);
+}
+
+.btn-block {
+    width: 100%;
+    display: block;
+}
+/* Navigation */
+.navbar {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--text-dark);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+}
+
+.navbar a {
+    color: var(--text-dark);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    transition: var(--transition);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+}
+
+.navbar a:hover {
+    color: var(--primary);
+    background: rgba(0, 150, 136, 0.1);
+}
+
+/* Feature Cards */
+.feature-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    height: 100%;
+}
+
+.feature-card i {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    color: var(--secondary);
+    margin-bottom: 1rem;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Ride Cards */
+.ride-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    height: 100%;
+    border-left: 4px solid var(--primary);
+}
+
+.ride-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.ride-card h3 {
+    color: var(--secondary);
+    margin-bottom: 1rem;
+}
+
+.ride-card p {
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.ride-card i {
+    width: 24px;
+    text-align: center;
+    margin-right: 8px;
+}
+
+/* Links and Footer */
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--accent);
+}
+
+footer {
+    background: var(--text-dark);
+    color: var(--text-light);
+    padding: 4rem 0;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .navbar {
+        padding: 0.8rem 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .form-container {
+        width: 90%;
+        padding: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.4rem;
+    }
+    
+    .feature-card {
+        margin-bottom: 1rem;
+    }
+}

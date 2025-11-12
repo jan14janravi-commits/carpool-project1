@@ -1,0 +1,33 @@
+{% extends "carpool/base.html" %}
+{% block content %}
+<h3>{{ ride.title }}</h3>
+<p><strong>{{ ride.origin }} → {{ ride.destination }}</strong></p>
+<p>{{ ride.date }} at {{ ride.time }}</p>
+<p>Seats available: {{ ride.seats_available }} / {{ ride.seats_total }}</p>
+<p>Price per seat: ₹{{ ride.price_per_seat }}</p>
+<p>{{ ride.description|linebreaks }}</p>
+
+{% if user.is_authenticated %}
+  {% if ride.seats_available > 0 %}
+    <form method="post" action="{% url 'book_ride' ride.pk %}">
+      {% csrf_token %}
+      {{ booking_form.as_p }}
+      <button class="btn btn-success">Book</button>
+    </form>
+  {% else %}
+    <p class="text-danger">Fully booked.</p>
+  {% endif %}
+{% else %}
+  <p><a href="{% url 'login' %}?next={{ request.path }}">Login</a> to book this ride.</p>
+{% endif %}
+
+<hr>
+<h5>Bookings</h5>
+<ul>
+  {% for b in ride.bookings.all %}
+    <li>{{ b.user.username }} — {{ b.seats_booked }} seat(s)</li>
+  {% empty %}
+    <li>No bookings yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
